@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
 import Header from "./Header";
+import Footer from "./Fooder";
 
 export default function Layout({ children }) {
   return (
