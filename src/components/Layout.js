@@ -5,12 +5,7 @@ import Footer from "./Footer";
 export default function Layout({ children }) {
   return (
     <>
-      <Header title="Hector Mendoza">
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/projects">Projects</Link>
-        <Link href="/admin">Admin</Link>
-      </Header>
+      <Header title="Hector Mendoza"></Header>
       <Container fixed>
         <main>{children}</main>
       </Container>
