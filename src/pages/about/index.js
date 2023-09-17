@@ -1,3 +1,9 @@
+import PageDescription from "@/components/PageDescription";
+
 export default function About() {
-  return <h1>New About Page Modified</h1>;
+  return (
+    <section>
+      <PageDescription title="About me"></PageDescription>
+    </section>
+  );
 }
