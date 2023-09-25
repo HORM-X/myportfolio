@@ -2,8 +2,9 @@ import PageDescription from "@/components/PageDescription";
 import { Grid, Button, Chip } from "@mui/material";
 import { useRouter } from "next/router";
 
-export default function About() {
+export default function AboutPage({ skills }) {
   const router = useRouter();
+
   return (
     <section>
       <PageDescription
@@ -34,11 +35,12 @@ export default function About() {
             Contact
           </Button>
         </Grid>
-        <Grid item md={6}></Grid>
-        <h2>My skills</h2>
-        {skills.map((skill) => (
-          <Chip key={skill} label={skill} />
-        ))}
+        <Grid item md={6}>
+          <h2>My Skills</h2>
+          {skills.map((skill) => (
+            <Chip key={skill} label={skill} />
+          ))}
+        </Grid>
       </Grid>
     </section>
   );
