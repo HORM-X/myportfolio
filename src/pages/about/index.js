@@ -1,5 +1,5 @@
 import PageDescription from "@/components/PageDescription";
-import { Grid, Button, Chip } from "@mui/material";
+import { Grid, Button, Chip, Stack } from "@mui/material";
 import { useRouter } from "next/router";
 
 export default function AboutPage({ skills }) {
@@ -37,9 +37,11 @@ export default function AboutPage({ skills }) {
         </Grid>
         <Grid item md={6}>
           <h2>My Skills</h2>
-          {skills.map((skill) => (
-            <Chip key={skill} label={skill} />
-          ))}
+          <Stack direction="row" spacing={2} useFlexGap flexWrap="wrap">
+            {skills.map((skill) => (
+              <Chip key={skill} label={skill} />
+            ))}
+          </Stack>
         </Grid>
       </Grid>
     </section>
@@ -47,9 +49,23 @@ export default function AboutPage({ skills }) {
 }
 
 export async function getStaticProps() {
+  let skills = [];
+
+  try {
+    const response = await fetch(
+      "https://my-skills-api-845ce-default-rtdb.firebaseio.com/skills.json"
+    );
+    const data = await response.json();
+    skills = data.split(",");
+  } catch (error) {
+    console.error(error);
+  }
+
+  //Page will be revalidated every 30 seconds.
   return {
     props: {
-      skills: ["Java", "React", "JSX"],
+      skills,
     },
+    revalidate: 30,
   };
 }
